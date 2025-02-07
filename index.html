@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moment Marketing 💛</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        /* background-color: #7ec89e; Light background to start */
+            background-image: url(/sample1/wp3050826.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #container {
+            text-align: center;
+            background: rgba(255,255,255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(33, 0, 0, 0.2);
+            max-width: 400px;
+            text-align: center;
+        }
+        button{
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #981f29;
+
+        }
+        #container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#heartContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; 
+}
+
+.heart {
+    width: 300px;
+    height: 300px;
+    background-color: rgb(233, 163, 174);
+    position: relative;
+    transform: rotate(-45deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;  
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    z-index: 1;  /* Make sure the heart is above other elements */
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-color: rgb(233, 163, 174);
+    border-radius: 50%;
+    z-index: -1;  /* Send heart's shape behind the text */
+}
+
+.heart:before {
+    top: -150px;
+    left: 0;
+}
+
+.heart:after {
+    left: 150px;
+    top: 0;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg); /* Rotate text back upright */
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    color: #000;
+    z-index: 2; /* Ensure text stays on top */
+    font-weight: bold;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ff1493;
+}
+
+/* Heart Pop-up Animation (0.1s) */
+.pop-up {
+    animation: popUp 0.1s forwards;  /* Changed from 0.5s to 0.1s */
+}
+
+/* Pop-down Animation (stays the same) */
+.pop-down {
+    animation:  popDown 0.1s forwards;
+}
+
+/* Keyframes for Pop-up */
+@keyframes popUp {
+    0% {
+        transform: rotate(-45deg) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(-45deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Keyframes for Pop-down */
+@keyframes popDown {
+    0% {
+        transform: rotate(-45deg) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-45deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- We'll add text and buttons here later -->
+        <h1>Hi Vishnu! 👋</h1>
+        <p>Something  is waiting for you.are you ready!🫠</p>
+        <button onclick="showNextMessage()">Yes, I'm ready!</button>
+    </div>
+    <script>
+        function showNextMessage() {
+            document.getElementById('container').innerHTML = `
+                <h1>Are you excited now? 🤩</h1>
+                <button id="yesBtn">Aww, Yes....!</button>
+                <button id="noBtn">No, I'm Not</button>
+            `;
+    
+            // Adding event listeners after the buttons are created
+            document.getElementById('yesBtn').addEventListener('click', function () {
+                nextMessage('yes');
+            });
+    
+            document.getElementById('noBtn').addEventListener('click', function () {
+                nextMessage('no');
+            });
+        }
+    
+        function nextMessage(response) {
+            if (response === 'yes') {
+                document.getElementById('container').innerHTML = `
+                    <h1>Okay,  how can I steal you? 😜</h1>
+                    <button id="noYouCantBtn">Hmm, No You Can't... sorry</button>
+                    <button id="idkBtn">I don't Know..</button>
+                    <button id="tryHarderBtn"> you have to try harder!</button>
+                `;
+    
+                // Adding event listeners for the new buttons
+                document.getElementById('noYouCantBtn').addEventListener('click', function () {
+                    alert('Yes, I want to...');
+                });
+    
+                document.getElementById('idkBtn').addEventListener('click', function () {
+                    alert("It's okay, we can talk and talk...");
+                });
+    
+                document.getElementById('tryHarderBtn').addEventListener('click', redirectToNextPage);
+    
+            } else {
+                alert('You can only choose the other option 😜');
+            }
+        }
+    
+        function redirectToNextPage() {
+    document.getElementById('container').innerHTML = `
+        <h2>Now, you're stuck with me 😜</h2>
+        <button onclick="showHeart()">Yes, I'm stuck!</button>
+        <button onclick="showAlert()">No, help!</button>
+        <div id="heartContainer"></div>
+    `;
+}
+
+function showHeart() {
+    const heartContainer = document.getElementById('heartContainer');
+    heartContainer.innerHTML = `
+        <div class="heart pop-up">
+            <div class="content">Ooh, I like this man... 💕</div>
+        </div>
+    `;
+
+    // Trigger the pop-down animation after 3 seconds
+    setTimeout(() => {
+        document.querySelector('.heart').classList.add('pop-down');
+    }, 3000);  // 3000 ms = 3 seconds
+}
+
+function showAlert() {
+    alert('No, you can\'t skip...');
+}
+
+            
+    </script>
+    
+    
+     
+    
+</body>
+</html>
